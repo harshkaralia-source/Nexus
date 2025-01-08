@@ -1,9 +1,18 @@
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 
 
 const About = () => {
+    const ref = useRef(null)
+    const isInView = useInView(ref)
     return (
         <div className='bg-[#CDEA68] py-10'>
-            <h2 className="font-medium text-xl md:text-5xl md:leading-[60px] tracking-wide pb-20 px-4 md:px-20">Nexus is a strategic presentation agency for forward-thinking businesses that need to <u>raise funds</u>, <u>sell prod­ucts</u>, <u>ex­plain com­plex ideas</u>, and <u>hire great peo­ple</u>.</h2>
+            <motion.h2
+                ref={ref}
+                initial={{ y: 20, opacity: 0 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: .1, duration: .3 }}
+                className="font-medium text-xl md:text-5xl md:leading-[60px] tracking-wide pb-20 px-4 md:px-20">Nexus is a strategic presentation agency for forward-thinking businesses that need to <u>raise funds</u>, <u>sell prod­ucts</u>, <u>ex­plain com­plex ideas</u>, and <u>hire great peo­ple</u>.</motion.h2>
 
             <div className="border-t border-zinc-600 px-4 md:px-20 py-5
             md:flex">
@@ -16,7 +25,12 @@ const About = () => {
                 </div>
 
                 <div className="w-full md:w-1/2 flex items-center pt-10 md:pt-0">
-                    <img src="https://images.pexels.com/photos/6234991/pexels-photo-6234991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className='rounded-xl filter brightness-200' alt="" />
+                    <motion.img
+                        ref={ref}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: .5, duration: .5 }}
+                        src="https://images.pexels.com/photos/6234991/pexels-photo-6234991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className='rounded-xl filter brightness-200' alt="" />
                 </div>
             </div>
         </div>
